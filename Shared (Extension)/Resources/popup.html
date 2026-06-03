@@ -1,11 +1,23 @@
 <!DOCTYPE html>
-<html>
+<html lang="nl">
 <head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="popup.css">
-    <script type="module" src="popup.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portflow Bearer Token</title>
+  <link rel="stylesheet" href="popup.css">
 </head>
 <body>
-    <strong>Hello World!</strong>
+  <div id="container">
+    <h1>Portflow Bearer Token</h1>
+    <div id="waiting" style="display: none;">Wacht op een Bearer token — open of navigeer op de Portflow pagina</div>
+    <div id="tokenSection" style="display: none;">
+      <textarea id="token" readonly></textarea>
+      <button id="copyButton">Kopiëren</button>
+      <div id="timestampLabel">Laatst gevonden: <span id="timestamp"></span></div>
+    </div>
+    <hr style="border: 0; border-top: 1px solid #ddd; margin: 8px 0; width: 100%;">
+    <button id="maximizeButton" style="width: 100%;">Maximaliseer Portflow (Verberg Canvas)</button>
+  </div>
+  <script src="popup.js"></script>
 </body>
 </html>
