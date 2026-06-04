@@ -5,6 +5,18 @@ browser.runtime.onMessage.addListener((message, sender) => {
   if (message && message.greeting === 'hello') {
     return Promise.resolve({ reply: 'hi from background' });
   }
+  // Live token validity check: fetch a known Portflow API endpoint from the
+  // background so we are not blocked by CORS restrictions in the content script.
+  if (message && message.type === 'check_token') {
+    const baseUrl = message.baseUrl || 'https://portfolio.drieam.app';
+    const url = `${baseUrl}/api/v1/me`;
+    return fetch(url, {
+      method: 'GET',
+      headers: { 'Authorization': `Bearer ${message.token}` }
+    })
+      .then(r => ({ valid: r.ok, status: r.status }))
+      .catch(e => ({ valid: false, status: 0, error: e.message }));
+  }
 });
 
 // Luister naar network requests op de achtergrond.
@@ -24,6 +36,6 @@ chrome.webRequest.onSendHeaders.addListener(
       }
     }
   },
-  { urls: ["*://*.portflow.io/*", "*://*.hu.nl/*"] },
+  { urls: ["*://*.portflow.io/*", "*://*.hu.nl/*", "*://*.drieam.app/*"] },
   ["requestHeaders"]
 );
