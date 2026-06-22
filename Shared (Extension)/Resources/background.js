@@ -5,6 +5,15 @@ browser.runtime.onMessage.addListener((message, sender) => {
   if (message && message.greeting === 'hello') {
     return Promise.resolve({ reply: 'hi from background' });
   }
+  // Generieke API GET via de background (omzeilt CORS in het content script).
+  if (message && message.type === 'api_get') {
+    return fetch(message.url, {
+      method: 'GET',
+      headers: { 'Authorization': `Bearer ${message.token}`, 'accept': '*/*' }
+    })
+      .then(async r => ({ ok: r.ok, status: r.status, data: r.ok ? await r.json() : null }))
+      .catch(e => ({ ok: false, status: 0, data: null, error: e.message }));
+  }
   // Live token validity check: fetch a known Portflow API endpoint from the
   // background so we are not blocked by CORS restrictions in the content script.
   if (message && message.type === 'check_token') {

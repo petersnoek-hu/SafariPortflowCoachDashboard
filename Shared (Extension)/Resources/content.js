@@ -80,39 +80,345 @@
               customPage.id = 'portflow-ext-custom-page';
               customPage.style.display = 'none';
               customPage.className = '_contentContainerWrapper_1i5nl_1';
+
+              // ── Studenten data ──────────────────────────────────────────────
+              const STUDENTS = [
+                {"name": "Jarno Brouwer",       "semester": "4", "tribe":"CE Weird ways", "gilde": "FE",    "scores": {"OC":"1",     "KO":"1",     "JKO":"1, 1",          "KPM":"1",             "PL":"?, 1",        "BD":"?, 2",   "SW":"?, 2",      "FO":"?, 2",     "PH":"?, 1",   "RE":"1"}},
+                {"name": "Jason Rendering",     "semester": "3", "tribe":"CE Weird ways", "gilde": "GD",    "scores": {"OC":"2, ?",  "KO":"2, ?",  "JKO":"2, ?",          "KPM":"2, ?",          "PL":"1, ?",        "BD":"2, 1, ?","SW":"1, 1",      "FO":"?",        "PH":"2, ?, ?","RE":"2, 1"}},
+                {"name": "Joran de Vries",      "semester": "3", "tribe":"CE Weird ways", "gilde": "GD",    "scores": {"OC":"1, ?",  "KO":"1, ?",  "JKO":"1, ?",          "KPM":"1, 1",          "PL":"1, ?",        "BD":"2, 1",   "SW":"2, 2",      "FO":"2",        "PH":"2",      "RE":"1"}},
+                {"name": "Rami Darkazouni",     "semester": "4", "tribe":"CE Weird ways", "gilde": "UX+FE", "scores": {"OC":"1, ?",  "KO":"1, ?",  "JKO":"1, ?",          "KPM":"2, ?",          "PL":"1, ?",        "BD":"2, ?",   "SW":"1, ?",      "FO":"1, ?",     "PH":"2, ?",   "RE":"0, ?"}},
+                {"name": "Storm Schifflers",    "semester": "3", "tribe":"CE Weird ways", "gilde": "GD",    "scores": {"OC":"1",     "KO":"1, ?, ?","JKO":"2, ?, ?, ?, ?", "KPM":"1, 1, ?, ?, ?", "PL":"2, 1, 1, 2",  "BD":"2, 1",   "SW":"2, 2",      "FO":"1",        "PH":"1",      "RE":"1"}},
+                {"name": "Sylvie Nguyen",       "semester": "3", "tribe":"CE Weird ways", "gilde": "BE",    "scores": {"OC":"1, ?",  "KO":"1, ?, ?","JKO":"",              "KPM":"1",             "PL":"",            "BD":"2, ?",   "SW":"1, 2",      "FO":"1",        "PH":"2, 1",   "RE":"2, 2"}},
+                {"separator": true},
+                {"name": "Daan Meijneken",      "semester": "4", "tribe":"Scrumdabb",     "gilde": "BE",    "scores": {"OC":"3, 3",  "KO":"3, 3",  "JKO":"3, 2",          "KPM":"3, 2",          "PL":"3, 2",        "BD":"2, ?",   "SW":"2, ?",      "FO":"2, ?",     "PH":"3, 2",   "RE":"3"}},
+                {"name": "Ian van der Werf",    "semester": "4", "tribe":"Scrumdabb",     "gilde": "BE+GD", "scores": {"OC":"2",     "KO":"2",     "JKO":"2, 2",          "KPM":"2",             "PL":"1, ?",        "BD":"2, 2",   "SW":"2",         "FO":"2",        "PH":"2",      "RE":"1"}},
+                {"name": "Jeroen van de Geest", "semester": "4", "tribe":"Scrumdabb",     "gilde": "BE",    "scores": {"OC":"2, ?, ?","KO":"2, ?, ?","JKO":"3, ?",         "KPM":"3, ?, ?",       "PL":"2, 2",        "BD":"3, 3",   "SW":"2, 2",      "FO":"2",        "PH":"2",      "RE":"2, ?"}},
+                {"name": "Luc van Ogtrop",      "semester": "4", "tribe":"Scrumdabb",     "gilde": "UX+FE", "scores": {"OC":"0, ?, ?","KO":"0, ?, ?","JKO":"1, ?, ?",      "KPM":"2, ?, ?",       "PL":"2",           "BD":"2",      "SW":"2, 2, ?",   "FO":"2, 2",     "PH":"2, 2",   "RE":"1"}},
+                {"name": "steven Hoekstra",     "semester": "4", "tribe":"Scrumdabb",     "gilde": "BE",    "scores": {"OC":"2",     "KO":"2",     "JKO":"2",             "KPM":"2",             "PL":"2, 2",        "BD":"2",      "SW":"2",         "FO":"2",        "PH":"2, 2",   "RE":"1"}},
+                {"name": "Thomas Middelbos",    "semester": "3", "tribe":"Scrumdabb",     "gilde": "FE",    "scores": {"OC":"1",     "KO":"1",     "JKO":"1",             "KPM":"1, ?",          "PL":"1, 1",        "BD":"2, 2",   "SW":"2, 2",      "FO":"1, 1",     "PH":"2, 2",   "RE":"2, 2"}},
+                {"separator": true},
+                {"name": "Cedric Heijlman",     "semester": "3", "tribe":"CJG",           "gilde": "AI",    "scores": {"OC":"",      "KO":"",      "JKO":"",              "KPM":"",              "PL":"",            "BD":"",       "SW":"",          "FO":"1",        "PH":"1",      "RE":"1"}},
+                {"name": "Diya Bassi",          "semester": "4", "tribe":"CJG",           "gilde": "BE",    "scores": {"OC":"1",     "KO":"1",     "JKO":"1",             "KPM":"1",             "PL":"1",           "BD":"2",      "SW":"1",         "FO":"1",        "PH":"2, 1, 1","RE":"1, 2"}},
+                {"name": "Isa Šabić",           "semester": "4", "tribe":"CJG",           "gilde": "AI",    "scores": {"OC":"?, ?",  "KO":"?, ?",  "JKO":"",              "KPM":"",              "PL":"?, 0, ?",     "BD":"1",      "SW":"1, 1",      "FO":"1, ?",     "PH":"1, 0",   "RE":"1, 0, ?"}},
+                {"name": "Rens Ekin",           "semester": "4", "tribe":"CJG",           "gilde": "UX",    "scores": {"OC":"2, ?, ?","KO":"2, ?, ?","JKO":"2, ?, ?, ?",   "KPM":"2, ?, ?",       "PL":"1, ?",        "BD":"2, ?",   "SW":"2, 2",      "FO":"1, 2, 1",  "PH":"1",      "RE":"2"}},
+                {"name": "Summer Bassi",        "semester": "4", "tribe":"CJG",           "gilde": "FE",    "scores": {"OC":"",      "KO":"",      "JKO":"",              "KPM":"",              "PL":"?",           "BD":"2",      "SW":"1, 1",      "FO":"1",        "PH":"2",      "RE":""}},
+                {"name": "Vyash Ramjatan",      "semester": "3", "tribe":"CJG",           "gilde": "BIT",   "scores": {"OC":"1, ?, ?","KO":"1, ?, ?","JKO":"1, ?, ?",      "KPM":"1, ?, ?",       "PL":"2, 2, ?",     "BD":"2, 2",   "SW":"2, 2, ?",   "FO":"2, 2, ?",  "PH":"2, 2, ?","RE":"1, 1"}},
+                {"separator": true},
+                {"name": "Eline Harbrecht",     "semester": "6", "tribe":"Stage",         "gilde": "FE",    "scores": {"OC":"?, ?",  "KO":"?, ?",  "JKO":"?, ?",          "KPM":"?, ?",          "PL":"1",           "BD":"2, ?",   "SW":"3, ?",      "FO":"2",        "PH":"2",      "RE":"1"}},
+                {"name": "Max Govers",          "semester": "5", "tribe":"Stage",         "gilde": "CS",    "scores": {}}
+              ];
+
+              // ── Tabel HTML bouwen ───────────────────────────────────────────
+              const SCORE_COLS = ['OC','KO','JKO','KPM','PL','BD','SW','FO','PH','RE'];
+              const TOTAL_COLS = 4 + SCORE_COLS.length; // Student, Tribe, Gilde, Semester + 10
+
+              const buildTableBody = (rows) => {
+                return rows.map(r => {
+                  if (r.separator) {
+                    return `<tr><td colspan="${TOTAL_COLS}" style="padding:0; border-bottom: 2px solid #e8e8e8;"></td></tr>`;
+                  }
+                  const scoreCells = SCORE_COLS.map(col => {
+                    const val = (r.scores && r.scores[col] != null) ? r.scores[col] : '';
+                    const safeStudent = r.name.replace(/&/g,'&amp;').replace(/"/g,'&quot;');
+                    return `<td class="ant-table-cell" data-student="${safeStudent}" data-col="${col}" style="text-align:center; padding-inline: 4px;">`
+                         + `<span class="ant-typography css-ypkju9 css-var-r1">${val}</span></td>`;
+                  }).join('');
+                  return `<tr class="ant-table-row ant-table-row-level-0">
+                    <td class="ant-table-cell"><span class="ant-typography css-ypkju9 css-var-r1">${r.name}</span></td>
+                    <td class="ant-table-cell"><span class="ant-typography css-ypkju9 css-var-r1">${r.tribe}</span></td>
+                    <td class="ant-table-cell"><span class="ant-typography css-ypkju9 css-var-r1">${r.gilde}</span></td>
+                    <td class="ant-table-cell"><span class="ant-typography css-ypkju9 css-var-r1">${r.semester}</span></td>
+                    ${scoreCells}
+                  </tr>`;
+                }).join('');
+              };
+
+              const scoreHeaders = SCORE_COLS.map(col =>
+                `<th class="ant-table-cell" scope="col" style="text-align:center; padding-inline: 4px; min-width: 36px;">${col}</th>`
+              ).join('');
+
+              const tableId = 'open-ict-students-table';
+              const tableHTML = `
+                <style>
+                  #${tableId} td.ant-table-cell,
+                  #${tableId} th.ant-table-cell { padding-block: 6px; }
+                </style>
+                <div class="css-var-r1 ant-table-css-var ant-table-wrapper css-ypkju9" style="margin-top: 16px;">
+                  <div class="ant-spin css-ypkju9 css-var-r1" aria-live="polite" aria-busy="false">
+                    <div class="ant-spin-container">
+                      <div class="ant-table css-var-r1 ant-table-css-var css-ypkju9 ant-table-scroll-horizontal">
+                        <div class="ant-table-container">
+                          <div class="ant-table-content" style="overflow: auto hidden;">
+                            <table id="${tableId}" style="width: max-content; min-width: 100%; table-layout: auto;">
+                              <caption class="_caption_z87sq_1"><span style="position:absolute;width:1px;height:1px;overflow:hidden">Mijn studenten</span></caption>
+                              <thead class="ant-table-thead">
+                                <tr>
+                                  <th class="ant-table-cell" scope="col">Student</th>
+                                  <th class="ant-table-cell" scope="col">Tribe</th>
+                                  <th class="ant-table-cell" scope="col">Gilde</th>
+                                  <th class="ant-table-cell" scope="col">Sem.</th>
+                                  ${scoreHeaders}
+                                </tr>
+                              </thead>
+                              <tbody class="ant-table-tbody" id="open-ict-table-body">
+                                ${buildTableBody(STUDENTS)}
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>`;
+
               customPage.innerHTML = `
                 <main class="_content_cun6s_1" id="open-ict-main">
                   <h1 class="ant-typography _title3_clkra_27 css-tql0nm css-var-r1">Open ICT aanpassingen</h1>
                   <span class="ant-typography css-tql0nm css-var-r1">Welkom op het (tijdelijke) Open ICT Dashboard prototype. Hierin kun je in de toekomst opdrachten en overzichten laden die je nodig hebt voor je coaching.</span>
-                  <div class="ant-space css-tql0nm ant-space-vertical _space_obrli_1 css-var-r1" style="gap: 16px;"></div>
+                  <div class="ant-space css-tql0nm ant-space-vertical _space_obrli_1 css-var-r1" style="gap: 16px;">
+                    <div style="display:flex; align-items:center; gap:12px; margin-top:8px;">
+                      <button id="open-ict-refresh-btn" type="button" class="ant-btn css-ypkju9 css-var-r1 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-sm">
+                        <span>Scores vernieuwen</span>
+                      </button>
+                      <span id="open-ict-status-text" style="font-size:13px; color:#888;"></span>
+                    </div>
+                    <div id="open-ict-progress-wrap" style="display:none; max-width:440px;">
+                      <div style="background:#f0f0f0; border-radius:4px; height:6px; width:100%;">
+                        <div id="open-ict-progress-fill" style="background:#1677ff; border-radius:4px; height:100%; width:0%; transition:width 0.25s;"></div>
+                      </div>
+                      <div id="open-ict-progress-label" style="font-size:12px; color:#aaa; margin-top:3px;"></div>
+                    </div>
+                    ${tableHTML}
+                  </div>
                 </main>
               `;
+
+              // ── API helpers ─────────────────────────────────────────────
+              const PF_BASE = 'https://portfolio.drieam.app/api/v1';
+              const PF_SEMESTER_START = new Date('2026-02-12');
+              const GOAL_MAP = {
+                'Overzicht cre\u00ebren':         'OC',
+                'Kritisch oordelen':             'KO',
+                'Juiste kennis ontwikkelen':     'JKO',
+                'Kwalitatief Product Maken':     'KPM',
+                'Plannen':                       'PL',
+                'Boodschap Delen':               'BD',
+                'Samenwerken':                   'SW',
+                'Flexibel opstellen':            'FO',
+                'Pro-actief handelen':           'PH',
+                'Reflecteren':                   'RE',
+              };
+
+              const pfApiGet = (token, url, params = {}) => new Promise(resolve => {
+                const u = new URL(url);
+                Object.entries(params).forEach(([k, v]) => u.searchParams.set(k, String(v)));
+                chrome.runtime.sendMessage({ type: 'api_get', url: u.toString(), token },
+                  resp => resolve(resp || null));
+              });
+
+              const pfResolveLevel = ev => {
+                const id = ev?.level;
+                if (!id) return null;
+                const lvl = (ev.level_set || []).find(l => l.id === id);
+                if (!lvl) return null;
+                return lvl.label === 'Startniveau' ? '0' : lvl.label;
+              };
+
+              const pfPending = (item, ev) => {
+                if (!ev) return true;
+                if (ev.review_request_scored === false) return true;
+                if (!ev.level) return true;
+                if (item.role === 'self' && ev.review_request_scored !== true) return true;
+                return false;
+              };
+
+              const pfInSemester = (item, ev) => {
+                for (const v of [ev?.submitted_at, ev?.created_at, item?.created_at, item?.updated_at]) {
+                  if (!v) continue;
+                  try {
+                    const d = new Date(v);
+                    if (!isNaN(d.getTime())) return d >= PF_SEMESTER_START;
+                  } catch {}
+                }
+                return true; // geen datum → include
+              };
+
+              // ── Voortgangs-UI ────────────────────────────────────────────
+              const pfSetStatus = (msg, type) => {
+                const el = document.getElementById('open-ict-status-text');
+                const wrap = document.getElementById('open-ict-progress-wrap');
+                if (el) el.textContent = msg;
+                if (wrap) wrap.style.display = type === 'loading' ? 'block' : 'none';
+              };
+              const pfSetProgress = (cur, tot, label) => {
+                const fill  = document.getElementById('open-ict-progress-fill');
+                const lbl   = document.getElementById('open-ict-progress-label');
+                if (fill) fill.style.width = (tot ? Math.round(cur / tot * 100) : 0) + '%';
+                if (lbl)  lbl.textContent  = tot ? `${cur}/${tot}\u00a0\u00a0${label}` : '';
+              };
+
+              // ── Score ophaal functie ──────────────────────────────────────
+              const fetchScores = async () => {
+                if (customPage._pfFetching) return;
+                customPage._pfFetching = true;
+                const btn = document.getElementById('open-ict-refresh-btn');
+                if (btn) btn.disabled = true;
+
+                try {
+                  // Token ophalen uit storage
+                  const storage = await chrome.storage.local.get('portflow_token');
+                  const tok = storage?.portflow_token?.token;
+                  if (!tok) {
+                    pfSetStatus('Geen token – navigeer eerst op Portflow.', '');
+                    return;
+                  }
+
+                  // Stap 1: gedeelde portfolios ophalen
+                  pfSetStatus('Gedeelde portfolios ophalen\u2026', 'loading');
+                  pfSetProgress(0, 1, '');
+                  const portfolioMap = {}; // name → Set<id>
+                  let page = 1;
+                  while (true) {
+                    const r = await pfApiGet(tok, `${PF_BASE}/shares/shared-with-me`,
+                      { order_by: 'created_at', order_direction: 'desc', page, per_page: 200 });
+                    if (!r?.data?.length) break;
+                    for (const item of r.data) {
+                      const inv = item.inviter;
+                      if (!inv || inv.current_role !== 'student') continue;
+                      if (!portfolioMap[inv.name]) portfolioMap[inv.name] = new Set();
+                      portfolioMap[inv.name].add(item.portfolio_id);
+                    }
+                    if (r.data.length < 200) break;
+                    page++;
+                  }
+
+                  // Stap 2: per student scores ophalen
+                  const realStudents = STUDENTS.filter(s => !s.separator);
+                  const total = realStudents.length;
+
+                  for (let i = 0; i < realStudents.length; i++) {
+                    const student = realStudents[i];
+                    pfSetProgress(i, total, student.name);
+                    pfSetStatus(`Ophalen\u2026 (${i + 1}/${total})`, 'loading');
+
+                    const portfolioIds = portfolioMap[student.name];
+                    if (!portfolioIds) continue;
+
+                    const goalScores = {}; // abbrev → string[]
+
+                    for (const pid of portfolioIds) {
+                      const gr = await pfApiGet(tok, `${PF_BASE}/portfolios/${pid}/goals`,
+                        { page: 1, per_page: 200 });
+                      if (!gr?.data?.length) continue;
+
+                      for (const goal of gr.data) {
+                        const abbrev = GOAL_MAP[goal.name];
+                        if (!abbrev) continue;
+
+                        // Feedback items gepagineerd ophalen
+                        let fbPage = 1;
+                        while (true) {
+                          const fr = await pfApiGet(tok,
+                            `${PF_BASE}/portfolios/${pid}/goals/${goal.id}/feedback-items`,
+                            { page: fbPage, per_page: 200 });
+                          if (!fr?.data?.length) break;
+
+                          for (const item of fr.data) {
+                            if (item.type !== 'criterion_evaluation') continue;
+                            const ev = item.evaluation;
+                            if (!pfInSemester(item, ev)) continue;
+
+                            if (pfPending(item, ev)) {
+                              (goalScores[abbrev] = goalScores[abbrev] || []).push('?');
+                            } else {
+                              if (item.role === 'self') continue;
+                              const level = pfResolveLevel(ev);
+                              if (!level) continue;
+                              (goalScores[abbrev] = goalScores[abbrev] || []).push(level);
+                            }
+                          }
+                          if (fr.data.length < 200) break;
+                          fbPage++;
+                        }
+                      }
+                    }
+
+                    // Tabelcellen bijwerken
+                    for (const col of SCORE_COLS) {
+                      const cell = document.querySelector(
+                        `#open-ict-table-body td[data-col="${col}"][data-student="${CSS.escape(student.name)}"]`
+                      );
+                      if (cell) {
+                        const val = (goalScores[col] || []).join(', ');
+                        cell.innerHTML = `<span class="ant-typography css-ypkju9 css-var-r1">${val}</span>`;
+                      }
+                    }
+                  }
+
+                  pfSetProgress(total, total, '');
+                  pfSetStatus(`Bijgewerkt om ${new Date().toLocaleTimeString('nl-NL')}`, '');
+                  customPage._pfLoaded = true;
+
+                } catch (err) {
+                  pfSetStatus(`Fout: ${err.message}`, '');
+                } finally {
+                  customPage._pfFetching = false;
+                  const b = document.getElementById('open-ict-refresh-btn');
+                  if (b) b.disabled = false;
+                }
+              };
+
+              // Refresh-knop koppelen
+              document.getElementById('open-ict-refresh-btn')
+                .addEventListener('click', fetchScores);
+
+              // Sla de fetchScores-functie op voor auto-trigger vanuit showCustomPage
+              customPage._fetchScores = fetchScores;
             }
 
             // Hulpfuncties: toon/verberg de custom pagina in de Portflow content area
             const showCustomPage = () => {
-              const contentArea = document.querySelector('.ant-layout-content') || document.querySelector('main') || document.body;
+              // Portflow structuur: [parent] > div._contentContainerWrapper > main#main
+              // We verbergen alleen de native _contentContainerWrapper, NIET alle siblings,
+              // zodat de topnavigatie (menuitems) zichtbaar blijft.
+              const nativeMain = document.getElementById('main');
+              const nativeWrapper = nativeMain ? nativeMain.parentElement : null;
+              const contentArea = nativeWrapper ? nativeWrapper.parentElement
+                                : (document.querySelector('.ant-layout-content') || document.body);
+
               if (!contentArea.contains(customPage)) {
-                contentArea.appendChild(customPage);
+                contentArea.insertBefore(customPage, nativeWrapper ? nativeWrapper.nextSibling : null);
               }
-              Array.from(customPage.parentElement.children).forEach(child => {
-                if (child !== customPage) {
-                  child.dataset.portflowHidden = 'true';
-                  child.style.display = 'none';
+
+              // Kopieer de wrapper- en main-klassen van de actieve Portflow pagina
+              // zodat de layout (breedte, padding, etc.) altijd overeenkomt.
+              if (nativeWrapper && nativeWrapper.className) {
+                customPage.className = nativeWrapper.className;
+                const ourMain = document.getElementById('open-ict-main');
+                if (nativeMain && ourMain) {
+                  ourMain.className = nativeMain.className;
                 }
-              });
+              }
+
+              // Verberg enkel de native content wrapper, niet de rest (bijv. navigatie)
+              if (nativeWrapper) {
+                nativeWrapper.dataset.portflowHidden = 'true';
+                nativeWrapper.style.display = 'none';
+              }
               customPage.style.display = 'block';
+
+              // Auto-fetch scores bij eerste weergave
+              if (customPage._fetchScores && !customPage._pfLoaded && !customPage._pfFetching) {
+                customPage._fetchScores();
+              }
             };
 
             const hideCustomPage = () => {
-              const parent = customPage.parentElement;
-              if (parent) {
-                Array.from(parent.children).forEach(child => {
-                  if (child !== customPage && child.dataset.portflowHidden === 'true') {
-                    delete child.dataset.portflowHidden;
-                    child.style.display = '';
-                  }
-                });
+              const nativeMain = document.getElementById('main');
+              const nativeWrapper = nativeMain ? nativeMain.parentElement : null;
+              if (nativeWrapper && nativeWrapper.dataset.portflowHidden === 'true') {
+                delete nativeWrapper.dataset.portflowHidden;
+                nativeWrapper.style.display = '';
               }
               customPage.style.display = 'none';
             };
